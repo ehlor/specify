@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Specify</title>
+    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="vendors/nouislider/nouislider.css" >
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <script src="vendors/nouislider/nouislider.min.js" defer></script>
+    <script type="module" src="scripts/playlistControls.js"></script>
+    <script type="module" src="scripts/main.js"></script>
+</head>
+<body>
+    <div class="page active" id="main">
+        <h1>Specify</h1>
+        <p>Search for similar songs on Spotify</p>
+        <div id="transitionBox">
+            <input class="searchBar" type="text" placeholder="Search">
+        </div>
+        <ul class="trackSearchList"></ul>
+    </div>
+    <div class="page" id="main2">
+        <input class="searchBar" type="text" placeholder="Search">
+        <ul class="trackSearchList"></ul>
+        <div class="track">
+            <img>
+            <div>
+                <p class="trackName"></p>
+                <p class="artistName"></p>
+            </div>
+        </div>
+        <div id="divider">
+            <div></div>
+            <p>Similar songs</p>
+            <div></div>
+            <button id="deselectAll">DESELECT ALL</button>
+            <button id="toggleFeatures">FEATURES</button>
+        </div>
+        <ul id="similarTrackList"></ul>
+        <div id="sideControls">
+            <div class="addToPlaylist" id="toNewPlaylist">
+                <div>
+                    <button>Add To New Playlist</button>
+                    <div class="optionBlock">
+                        <label>Private</label>
+                        <input type="checkbox" id="privateToggle">
+                        <label class="toggle" for="privateToggle"><div></div></label>
+                    </div>
+                    <div class="optionBlock">
+                        <label>Only Selected</label>
+                        <input type="checkbox" id="selectedToggle2">
+                        <label class="toggle" for="selectedToggle2"><div></div></label>
+                    </div>
+                    <div class="simpleBlock">
+                        <input type="text" placeholder="Playlist Name" id="playlistName">
+                    </div>
+                    <div class="simpleBlock">
+                        <button id="newPlaylistConfirm">Confirm</button>
+                    </div>
+                </div>
+            </div>
+            <div class="addToPlaylist" id="toExistingPlaylist">
+                <div>
+                    <button>Add To Existing Playlist</button>
+                    <div class="optionBlock">
+                        <label>Only Selected</label>
+                        <input type="checkbox" id="selectedToggle1">
+                        <label class="toggle" for="selectedToggle1"><div></div></label>
+                    </div>
+                    <div class="simpleBlock">
+                        <button id="selectPlaylist">
+                            <p>Select Playlist</p>
+                            <img src="images/chevron-down.svg">
+                        </button>
+                        <ul id="playlistList"></ul>
+                    </div>
+                    <div class="simpleBlock">
+                        <button id="existingPlaylistConfirm">Confirm</button>
+                    </div>
+                </div>
+            </div>
+            <div id="featureSelection">
+                <div>
+                    <label>Acousticness</label>
+                    <div class="slider"></div>
+                </div>
+                <div>
+                    <label>Danceability</label>
+                    <div class="slider"></div>
+                </div>
+                <div>
+                    <label>Energy</label>
+                    <div class="slider"></div>
+                </div>
+                <div>
+                    <label>Instrumentalness</label>
+                    <div class="slider"></div>
+                </div>
+                <div>
+                    <label>Liveness</label>
+                    <div class="slider"></div>
+                </div>
+                <div>
+                    <label>Speechiness</label>
+                    <div class="slider"></div>
+                </div>
+                <div>
+                    <label>Valence</label>
+                    <div class="slider"></div>
+                </div>
+                <button id="selectFeaturesButton">Apply Features</button>
+            </div>
+        </div>
+        <button id="loadButton">Show More</button>
+    </div>
+</body>
+</html>
