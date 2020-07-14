@@ -37,13 +37,10 @@ document.querySelectorAll('.searchBar').forEach(element => {
     // Get track list
     element.addEventListener('input', async event => {
         const query = event.target.value
-        const response = await tracks.getSearchResults(query)
-        tracks.suggested = []
-        try {
-            tracks.suggested.push(...response.tracks.items)
-            tracks.showSearchResults()
-        } catch {
-            trackSearchList.innerHTML = ''
+        if(query === '') trackSearchList.innerHTML = ''
+        else {
+            await tracks.getSearchResults(query)
+            tracks.showSearchResults(trackSearchList)
         }
     })
 })
@@ -57,7 +54,7 @@ document.querySelectorAll('.trackSearchList').forEach(element => {
         const mainTrackResponse = tracks.suggested[index]
         try {
             tracks.mainTrack = mainTrackResponse
-            tracks.show(false, true)
+            tracks.show(false, true, states.featuresOn)
         } catch(err) {
             console.log(err)
         }
@@ -105,7 +102,7 @@ similarTrackList.addEventListener('click', event => {
 
 // Load more tracks
 document.querySelector('#loadButton').addEventListener('click', async event => {
-    tracks.show(true, false)
+    tracks.show(true, false, states.featuresOn)
 })
 
 // Apply features
@@ -120,7 +117,7 @@ document.querySelector('#selectFeaturesButton').addEventListener('click', async 
         valence: []
     }
     document.querySelectorAll('.slider').forEach((element, index) => featureConfig[Object.keys(featureConfig)[index]] = element.noUiSlider.get())
-    tracks.show(false, false, featureConfig)
+    tracks.show(false, false, states.featuresOn, featureConfig)
 })
 
 audio.player.addEventListener('ended', event => {
@@ -148,7 +145,6 @@ document.querySelector('#toggleFeatures').addEventListener('click', () => {
         })
         states.featuresOn = false
     }
-    document.querySelectorAll('.trackFeatures')
 })
 
 // create sliders

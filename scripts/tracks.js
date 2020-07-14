@@ -8,13 +8,13 @@ export default class Tracks {
         this.mainTrack = null
     }
 
-    async show(toAppend, isNew, featureConfig = null) {
+    async show(toAppend, isNew, featuresOn, featureConfig = null) {
         if (isNew) await this.setSeeds()
         if (!toAppend) this.clear()
         const tracks = await this.getRecommendedTracks(toAppend, featureConfig)
         this.recommended.push(...tracks)
         const features = await this.getFeatures(tracks, this.cfg.rLimit)
-        this.showRecommendedTracks(tracks, features, toAppend)
+        this.showRecommendedTracks(tracks, features, toAppend, featuresOn)
     }
 
     clear() {
@@ -87,12 +87,16 @@ export default class Tracks {
         return result.slice(0, this.cfg.rLimit)
     }
 
-    showRecommendedTracks(trackList, features, toAppend) {
+    showRecommendedTracks(trackList, features, toAppend, featuresOn) {
         const fragment = new DocumentFragment()
-        let trackCard, previewBlock, fIndex, fValues
+        let trackCard, previewBlock, fIndex, fValues, fStyle = ''
         if (!toAppend) {
             document.querySelector('#similarTrackList').innerHTML = ''
             this.selected = []
+        }
+        if (featuresOn) {
+            fStyle = ' style="min-width: 90px;"'
+            console.log('a')
         }
         trackList.forEach((item, index) => {
             fIndex = features.length - this.cfg.rLimit + index
@@ -123,7 +127,7 @@ export default class Tracks {
                     ${previewBlock}
                     <button class="selectTrack">SELECT</button>
                 </div>
-                <div class="trackFeatures">
+                <div class="trackFeatures"${fStyle}>
                     <div class="acousticness" style="width: ${fValues[0]}%;">${fValues[0]}</div>
                     <div class="danceability" style="width: ${fValues[1]}%;">${fValues[1]}</div>
                     <div class="energy" style="width: ${fValues[2]}%;">${fValues[2]}</div>
@@ -148,13 +152,13 @@ export default class Tracks {
             }
         })
         .then(res => res.json())
+        .then(data => this.suggested = data.tracks.items)
         .catch(err => console.log(err))
     }
 
-    showSearchResults() {
+    showSearchResults(list) {
         let li, p, img, name, a
-        const trackSearchList = document.querySelector('.trackSearchList')
-        trackSearchList.innerHTML = ''
+        list.innerHTML = ''
         this.suggested.forEach(track => {
             li = document.createElement('li')
             p = document.createElement('p')
@@ -168,7 +172,7 @@ export default class Tracks {
             p.appendChild(name)
             a.appendChild(p)
             li.appendChild(a)
-            trackSearchList.appendChild(li)
+            list.appendChild(li)
         })
     }
 
