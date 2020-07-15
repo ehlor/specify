@@ -1,5 +1,5 @@
 const key = '9d2a387bd70e41c3ab060624c0bdb172'
-const redirectUri = encodeURI('http://ehlor.github.io/specify') // http://ehlor.github.io/specify, http://localhost:5500
+const redirectUri = encodeURI('http://localhost:5500') // http://ehlor.github.io/specify, http://localhost:5500
 const authEndpoint = 'https://accounts.spotify.com/authorize'
 const scopes = decodeURIComponent('playlist-modify-public playlist-modify-private')
 const hash = window.location.hash

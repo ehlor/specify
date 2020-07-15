@@ -114,7 +114,7 @@ playlistList.addEventListener('click', event => {
     const index = list.indexOf(item)
     playlists.selected = playlists.data[index]
     document.querySelector('#selectPlaylist > p').textContent = playlists.selected.name
-    document.querySelector('#selectPlaylist').style = 'font-weight: 600; background-color: #9C6ADA;'
+    document.querySelector('#selectPlaylist').style = 'font-weight: 500; background-color: #9C6ADA;'
     closePlaylists()
 })
 
