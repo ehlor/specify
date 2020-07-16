@@ -29,16 +29,8 @@ export default class Playlists{
                 'public': !isPrivate
             })
         })
-        .then(res => {
-            if (res.ok) {
-                toast.showMessage('Playlist has been created', 'success')
-                return res.json()
-            }
-        })
-        .catch(err => {
-            toast.showMessage('Request failed', 'error')
-            console.log(err)
-        })
+        .then(res => res.json())
+        .catch(err => console.log(err))
     }
 
     addToPlaylist(tracks, isOnlySelected, playlistId) {
@@ -61,11 +53,12 @@ export default class Playlists{
                     'uris': uris
                 })
             })
-            .then(res => {
+            .then(async res => {
                 if (res.ok) toast.showMessage('Tracks have been added to your playlist', 'success')
+                else throw await res.json()
             })
             .catch(err => {
-                toast.showMessage('Request failed', 'error')
+                toast.showMessage(err.error.message, 'error')
                 console.log(err)
             })
         }

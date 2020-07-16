@@ -541,7 +541,6 @@ button:active{
     margin-left: -100px;
     padding: 10px 15px;
     width: 250px;
-    font-weight: 600;
     border-radius: 5px;
     box-shadow: 0 5px 10px rgba(0,0,0,0.25), 0 3px 3px rgba(0,0,0,0.22);
     transition: bottom 0.1s ease-out;
@@ -549,10 +548,12 @@ button:active{
 
 .toastType{
     font-size: 1.1rem;
+    font-weight: 600;
 }
 
 .toastMsg{
     font-size: 0.9rem;
+    font-weight: 500;
 }
 
 .toast.success{
