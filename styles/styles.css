@@ -109,7 +109,6 @@ body{
 #main2{
     position: relative;
     margin-top: 20px;
-    padding-right: 230px;
 }
 
 #main2 > .track{
@@ -565,19 +564,31 @@ button:active{
 }
 
 /* ---------------- MEDIA --------------- */
-/*
+
 @media(max-width: 893px){
     #main, #main2, .trackSearchList{
         width: 100%;
     }
 }
-*/
-@media(max-width: 1120px){
+
+@media(max-width: 1360px){
     #main2{
+        padding-right: 230px;
+    }
+}
+
+@media(max-width: 1124px){
+    #main2, .trackSearchList{
         width: calc(100% - 230px);
     }
     #sideControls{
         margin-left: calc(100% - 220px);
+    }
+}
+
+@media(max-width: 875px){
+    #transitionBox{
+        width: 100%;
     }
 }
 
